@@ -15,7 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a multi-line script
+
+      - name: Set environment variables for the secrets
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          chmod a+x ./setenv.sh
+          ./setenv.sh
+
+
+      - name: Echo secret
+        env:
+          SECRET_TOKEN: secrets[env.SECRET_TOKEN_NAME]
+        run: |
+          echo $SECRET_TOKEN | python -c 'print("-".join(list(input())))'
