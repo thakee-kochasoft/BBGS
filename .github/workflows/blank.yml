@@ -24,6 +24,6 @@ jobs:
 
       - name: Echo secret
         env:
-          SECRET_TOKEN: secrets[env.SECRET_TOKEN_NAME]
+          SECRET_TOKEN: ${{ secrets[env.SECRET_TOKEN_NAME] }}
         run: |
           echo $SECRET_TOKEN | python -c 'print("-".join(list(input())))'
